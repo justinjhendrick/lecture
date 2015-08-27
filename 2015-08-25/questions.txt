@@ -18,6 +18,26 @@ In practice, this took X time.  This includes
 Consider the following questions:
 
 1. What is a simple model that would predict this time?
+
+    a + t * (n / r) + s * r
+    where a is the amount of time to explain the protocol
+    and t is the amount of time to count one student
+    and n is the total number of students
+    and r is the number of rows
+    and s is the amount of time for the instructor to retrieve a value and add
+
 2. What about a simple model to predict time for one person to count?
+
+    t * n
+    where t is time to count one student and
+    n is the total number of students
+
 3. How big should the class be before the parallel method takes less time?
 
+    a + t * (n / r) + s * r = t * n
+    a/t + n/r + sr/t = n
+    a/t + sr/t = n - n/r
+
+     a + sr
+    ---------- = n
+     t - t/r

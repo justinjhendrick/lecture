@@ -8,13 +8,26 @@
     you should use a script to produce this plot, with both the serial
     fraction and the maximum number of cores as parameters.
 
+    Idealized speedup:
+    http://www.wolframalpha.com/input/?i=plot+1%2F%28.1+%2B+.9%2Fx%29+from+x+%3D+1+..+128
+
+    Idealized efficiency:
+    http://www.wolframalpha.com/input/?i=plot+1%2F%28x%28.1+%2B+.9%2Fx%29%29+from+x+%3D+1+..+128
+
 2.  Suppose a particular program can be partitioned into perfectly
     independent tasks, each of which takes time tau.  Tasks are
     set up, scheduled, and communicated to p workers at a (serial)
     central server; this takes an overhead time alpha per task.
     What is the theoretically achievable throughput (tasks/time)?
 
+    time = alpha * tasks
+    tasks / time = 1 / alpha
+
 3.  Under what circumstances is it best to not tune?
+
+    If it's only run once, if you're not tuning a bottleneck, or
+    if the amount of human time it takes to tune it is not worth
+    the computer time saved
 
 4.  The class cluster consists of eight nodes and fifteen Xeon Phi
     accelerator boards.  Based on an online search for information on
@@ -23,5 +36,28 @@
     you computed this, and give URLs for where you got the parameters
     in your calculation.  (We will return to this question again after
     we cover some computer architecture.)
+
+    HOST NODES:
+    [1] states the clock frequency of the host nodes at 2.4 GHz
+    According to [2], "Most microprocessors today can carry out 4 FLOPS per clock cycle"
+    There are 8 core nodes with 12 threads each,
+    and each thread performs 2.4 * 4 = 9.6 gigaFLOP/s.
+    So, that is 8 * 12 * 9.6 = 921.6 gigaFLOP/s.
+
+    ACCELERATORS:
+    There are 15 accelerators each with 60 cores and a clock speed of 1.053 GHz, according
+    to [3]. So, 4 * 1.053 * 60 * 15 = 3790.8 gigaFLOP/s.
+
+    TOTAL: 
+    4712.4 gigaFLOP/s = 4.7 teraFLOP/s.
+
+    Links:
+    [1] http://ark.intel.com/products/83352/Intel-Xeon-Processor-E5-2620-v3-15M-Cache-2_40-GHz
+    [2] https://en.wikipedia.org/wiki/FLOPS
+    [3] http://ark.intel.com/products/71992/Intel-Xeon-Phi-Coprocessor-5110P-8GB-1_053-GHz-60-core
     
 5.  What is the approximate theoretical peak flop rate for your own machine?
+
+    I have a first generation Intel i3 processor with 4 cores each with
+    a clock speed of 933 MHz.
+    4 * 933 * 4 = 14.9 gigaFLOP/s
