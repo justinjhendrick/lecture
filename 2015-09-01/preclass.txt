@@ -11,12 +11,18 @@ with questions for class!
     you computed this, and give URLs for where you got the parameters
     in your calculation.  (We will return to this question again after
     we cover some computer architecture.)
+
+    I edited my previous response
     
 2.  What is the approximate theoretical peak flop rate for your own machine?
 
 3.  Suppose there are t tasks that can be executed in a pipeline
     with p stages.  What is the speedup over serial execution of the
     same tasks?
+
+    speedup =      t        = p
+              ------------
+                  t/p
 
 4.  Consider the following list of tasks (assume they can't be pipelined):
 
@@ -31,6 +37,17 @@ with questions for class!
     a compiled application?  What is the minimum parallel time given
     an arbitrary number of processors?
 
+    serial: sum(1, .5, .25, .5, .5) = 2.75 hrs
+    parallel: 
+
+    each dash is 15 minutes
+    GCC      ----
+    OpenMPI      --
+    OpenBLAS     -
+    LAPACK        --
+    app             --
+             ......... = 2h15m
+
 5.  Clone the membench repository from GitHub:
 
        git clone git@github.com:cornell-cs5220-f15/membench.git
@@ -43,6 +60,13 @@ with questions for class!
     timings-heat.pdf; what can you tell about the cache architecture
     on your machine from the plot?
 
+    I don't quite know how to read this plot but I'll guess
+
+    L0 cache 2^12B, L1 cache 2^18B
+
+    The max is 80 ns which is very high, not surprising though
+    this machine is ~5 years old
+
 6.  From the cloned repository, check out the totient branch:
 
        git checkout totient
@@ -51,6 +75,8 @@ with questions for class!
     If you prefer, you can also look at the files on GitHub.  Either
     way, repeat the exercise of problem 5.  What can you tell about
     the cache architecture of the totient nodes?
+
+    I need help reading these plots. We just glossed over it in lecture
 
 7.  Implement the following three methods of computing the centroid
     of a million two-dimensional coordinates (double precision).
@@ -69,3 +95,5 @@ with questions for class!
     compiler.  To do this, run "module load cs5220" and run (e.g.)
 
         icc -o centroid centroid.c
+
+    I did qsub and I don't know how to get the result...

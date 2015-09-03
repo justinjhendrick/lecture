@@ -39,17 +39,18 @@
 
     HOST NODES:
     [1] states the clock frequency of the host nodes at 2.4 GHz
-    According to [2], "Most microprocessors today can carry out 4 FLOPS per clock cycle"
-    There are 8 core nodes with 12 threads each,
-    and each thread performs 2.4 * 4 = 9.6 gigaFLOP/s.
-    So, that is 8 * 12 * 9.6 = 921.6 gigaFLOP/s.
+    2 flops/FMA
+    x4 FMA/vectorFMA = 8 flops/vector FMA
+    x2 vector FMAs/cycle = 16 flops/cycle
+    and each thread performs 2.4 * 16 = 38.4 gigaFLOP/s.
+    So, that is 8 * 12 * 38.4 = 3.7 teraFLOP/s.
 
     ACCELERATORS:
     There are 15 accelerators each with 60 cores and a clock speed of 1.053 GHz, according
     to [3]. So, 4 * 1.053 * 60 * 15 = 3790.8 gigaFLOP/s.
 
     TOTAL: 
-    4712.4 gigaFLOP/s = 4.7 teraFLOP/s.
+    7.5 teraFLOP/s.
 
     Links:
     [1] http://ark.intel.com/products/83352/Intel-Xeon-Processor-E5-2620-v3-15M-Cache-2_40-GHz
